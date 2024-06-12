@@ -2,7 +2,7 @@
 
 ## Summary
 
-- Maya, Blender, SubstancePainter 에서 선택한 어엣을 FBX 파일 로 빠르게 복사 붙혀넣기 할수 있는 툴입니다.
+- Maya, Blender, SubstancePainter 에서 선택한 어셋을 FBX 파일로 빠르게 복사 붙혀넣기 할수 있는 툴입니다.
 
 ## Install
 
