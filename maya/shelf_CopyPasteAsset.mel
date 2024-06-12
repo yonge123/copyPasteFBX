@@ -1,0 +1,78 @@
+global proc shelf_CopyPasteAsset () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "CopyAsset" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "import os\nimport maya.cmds as cmds\n\n\ndef getFbxPath():\n    userP..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "CopyAsset" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 1 
+        -image "copyUV.png" 
+        -image1 "copyUV.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import os\nimport maya.cmds as cmds\n\n\ndef getFbxPath():\n    userProfileDir = os.getenv(\"USERPROFILE\")\n    saveDir = '{}/.copyPasteAssetFBX/exportAssetFBX'.format(userProfileDir)\n    if not os.path.isdir(saveDir):\n        os.makedirs(saveDir)\n    fbxFile = '{}/exportAssetFBX.fbx'.format(saveDir)\n    return fbxFile\n\n\ndef loadPlugin(pluginName):\n    isLoaded = cmds.pluginInfo(pluginName, q=True, loaded=True)\n    if not isLoaded:\n        cmds.loadPlugin(pluginName)\n\n\ndef loadPluginFbx():\n    plugins = [\"fbxmaya\", \"gameFbxExporter\"]\n    for plugin in plugins:\n        loadPlugin(plugin)\n\n\ndef importFBX():\n    loadPluginFbx()\n    fbxFile = getFbxPath()\n    if os.path.isfile(fbxFile):\n        cmds.file(fbxFile, i=True, type=\"FBX\", ignoreVersion=True, mergeNamespacesOnClash=False, options=\"fbx\", pr=True, importFrameRate=True, importTimeRange=\"override\")\n\n\ndef exportFBX():\n    loadPluginFbx()\n    fbxFile = getFbxPath()\n    cmds.file(fbxFile, force=True, options=\"groups=1;ptgroups=1;materials=0;smoothing=1;normals=1\", typ=\"FBX export\", pr=True, es=True)\n\n\ndef copyAssetFBX():\n    exportFBX()\n\n\ndef pasteAssetFBX():\n    importFBX()\n\n\nif __name__ == '__main__':\n    copyAssetFBX()\n    # pasteAssetFBX()\n\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "PastAsset" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "import os\nimport maya.cmds as cmds\n\n\ndef getFbxPath():\n    userP..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "PastAsset" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 1 
+        -image "pasteUV.png" 
+        -image1 "pasteUV.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import os\nimport maya.cmds as cmds\n\n\ndef getFbxPath():\n    userProfileDir = os.getenv(\"USERPROFILE\")\n    saveDir = '{}/.copyPasteAssetFBX/exportAssetFBX'.format(userProfileDir)\n    if not os.path.isdir(saveDir):\n        os.makedirs(saveDir)\n    fbxFile = '{}/exportAssetFBX.fbx'.format(saveDir)\n    return fbxFile\n\n\ndef loadPlugin(pluginName):\n    isLoaded = cmds.pluginInfo(pluginName, q=True, loaded=True)\n    if not isLoaded:\n        cmds.loadPlugin(pluginName)\n\n\ndef loadPluginFbx():\n    plugins = [\"fbxmaya\", \"gameFbxExporter\"]\n    for plugin in plugins:\n        loadPlugin(plugin)\n\n\ndef importFBX():\n    loadPluginFbx()\n    fbxFile = getFbxPath()\n    if os.path.isfile(fbxFile):\n        cmds.file(fbxFile, i=True, type=\"FBX\", ignoreVersion=True, mergeNamespacesOnClash=False, options=\"fbx\", pr=True, importFrameRate=True, importTimeRange=\"override\")\n\n\ndef exportFBX():\n    loadPluginFbx()\n    fbxFile = getFbxPath()\n    cmds.file(fbxFile, force=True, options=\"groups=1;ptgroups=1;materials=0;smoothing=1;normals=1\", typ=\"FBX export\", pr=True, es=True)\n\n\ndef copyAssetFBX():\n    exportFBX()\n\n\ndef pasteAssetFBX():\n    importFBX()\n\n\nif __name__ == '__main__':\n    # copyAssetFBX()\n    pasteAssetFBX()\n\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 
